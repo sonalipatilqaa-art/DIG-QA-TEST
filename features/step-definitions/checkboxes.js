@@ -1,19 +1,24 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import CheckboxesPage from '../pageobjects/checkboxes.page.js';
+import { expect } from '@wdio/globals';
 
-// This must match "Given I am on the Checkboxes page" exactly
-Given(/^I am on the Checkboxes page$/, async () => {
-    await CheckboxesPage.open(); 
+Given('I am on the Checkboxes page', async function () {
+    await browser.url('https://the-internet.herokuapp.com/checkboxes');
+    await $('#checkboxes').waitForDisplayed({ timeout: 5000 });
 });
 
-When(/^I select checkbox (\d+)$/, async function (num) {
-    const index = parseInt(num);
-    // Store the element for the Then step assertion
-    this.targetCheckbox = (await CheckboxesPage.checkboxInputs)[index - 1];
-    await CheckboxesPage.select(index);
+When('I select checkbox {int}', async function (n) {
+    // $$ returns an array of all matching checkboxes
+    const checkboxes = await $$('#checkboxes input[type="checkbox"]');
+    const targetCheckbox = checkboxes[n - 1]; // Convert 1-based index to 0-based
+
+    if (!(await targetCheckbox.isSelected())) {
+        await targetCheckbox.click();
+    }
 });
 
-Then(/^The checkbox should be checked$/, async function () {
-    // Use the stored element to verify it is selected
-    await expect(this.targetCheckbox).toBeSelected();
+Then('The checkbox {int} should be checked', async function (n) {
+    const checkboxes = await $$('#checkboxes input[type="checkbox"]');
+    const targetCheckbox = checkboxes[n - 1];
+    
+    await expect(targetCheckbox).toBeSelected();
 });

@@ -1,4 +1,4 @@
-Feature: The Internet Guinea Pig Website
+Feature: Checkbox Functionality
 
   @CHECKBOXES
   Scenario Outline: As a user, I can log into the secure area

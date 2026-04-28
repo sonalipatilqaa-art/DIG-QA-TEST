@@ -45,8 +45,7 @@ jobs:
       if: always()
       run: |
         mkdir -p allure-results
-        # -p forces the use of the 'allure-commandline' package (v2)
-        # instead of the 'allure' package (v3)
+        # This specific command forces v2.34.0 and bypasses the Allure 3 error
         npx -y -p allure-commandline@2.34.0 allure generate allure-results --clean -o allure-report --single-file
 
     - name: Upload Allure report

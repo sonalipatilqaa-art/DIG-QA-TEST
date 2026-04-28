@@ -23,7 +23,7 @@ jobs:
         node-version: '24'
         cache: 'npm'
 
-    - name: Setup Java (required by allure-commandline)
+    - name: Setup Java
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
@@ -45,7 +45,8 @@ jobs:
       if: always()
       run: |
         mkdir -p allure-results
-        npx -y -p allure-commandline@2.34.0 allure generate allure-results --clean -o allure-report --single-file
+        # This uses the version 2.34.0 pinned in your package.json
+        npm run report:generate
 
     - name: Upload Allure report
       uses: actions/upload-artifact@v4

@@ -1,5 +1,5 @@
 @INPUTS
-Feature: The Internet Guinea Pig Website
+Feature: The Input Functionality
 
   Scenario Outline: As a user, I can change the value of an input
     Given I am on the inputs page

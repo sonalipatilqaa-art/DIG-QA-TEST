@@ -1,5 +1,5 @@
 @DROPDOWN
-Feature: The Internet Guinea Pig Website
+Feature: The Dropdown Management
 
   Scenario Outline: As a user, I can select options from a dropdown menu
     Given I am on the Dropdown page

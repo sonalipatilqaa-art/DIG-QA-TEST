@@ -1,4 +1,4 @@
-Feature: The Internet Guinea Pig Website
+Feature: The Site Navigation
 
   @INDEX
   Scenario Outline: As a user,  I can navigate to all pages
